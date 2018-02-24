@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Players</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="interests.css"/>
+  </head>
+  <body>
+      <br/><br/>
+      <div class="container" style="width:1000px;">
+          <h2 align="center">What activities do you enjoy the most with friends?</h2>
+          <br/><br/>
+          <div class="col-md-4">
+          <form method="post" id="multiple_select_form">
+                  <label> select which group interests you're looking for</label>
+                  <select name="framework[]" id="framework" multiple class="form-control
+                  selectpicker" data-live-search="True" multiple>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Tabletennis">Table Tennis</option>
+                    <option value="Swimming">Swimming</option>
+                    <option value="Weightlifting">Weightlifting</option>
+                    <option value="Football">Football</option>
+                    <option value="Soccer">Soccer</option>
+                  </select>
+
+              <br/>
+              <input type="hidden" name="hidden_framework" id="hidden_framework"/>
+              <button  class="submit" type="submit" name="submit">Submit</button>
+
+
+          </form>
+          <br/>
+        </div>
+  </body>
+</html>
+
+<script>
+$(document).ready(function(){
+  $('.selectpicker').selectpicker();
+  $('#framework').change(function(){
+    $('#hidden_framework').val($('#framework').val());
+  });
+  $('#multiple_select_form').on('submit', function(event){
+      event.preventDefault();
+      if($('#framework').val() != '')
+      {
+        var form_data = $(this).serialize();
+        $.ajax({
+          url:"insert.php",
+          method:"POST",
+          data:form_data,
+          success:function(data)
+          {
+            //console.log(data);
+            $('#hidden_framework').val('');
+            $('.selectpicker').selectpicker('val', '');
+            alert(data);
+          }
+
+        })
+      }
+      else
+      {
+        alert("Please Select Interests");
+        return false;
+      }
+  });
+});
+</script>
