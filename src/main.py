@@ -10,6 +10,9 @@ class User(Document):
     username = StringField(required=True, max_length=200)
     password = StringField(required=True, max_length=200)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        return 'Hello World'
