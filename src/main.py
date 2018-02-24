@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 from flask import jsonify
 from flask import request
 from mongoengine import *
@@ -10,9 +10,6 @@ class User(Document):
     username = StringField(required=True, max_length=200)
     password = StringField(required=True, max_length=200)
 
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def login():
-    person = User()
-    person.save()
-    print(person.name)
-    return render_template('interests.html', error=error)
+    return render_template('login.html')
