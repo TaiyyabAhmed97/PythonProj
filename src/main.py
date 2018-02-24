@@ -15,11 +15,4 @@ def login():
     person = User()
     person.save()
     print(person.name)
-<<<<<<< HEAD
     return render_template('interests.html', error=error)
-=======
-    return render_template('login.html', error=error)
-@app.route('/interests/<id>', methods=['POST'])
-def interests():
-    
->>>>>>> 8a5dbfc58eea3ad71d42ebab9cbfed9283dbcba3
