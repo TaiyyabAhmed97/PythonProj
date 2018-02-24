@@ -6,7 +6,7 @@ from datetime import datetime
 from mongoengine import *
 connect('mongoengine_test', host='localhost', port=27017)
 
-gmaps = googlemaps.Client(key=' AIzaSyAO4q3ZkN0AOF1MK2Or2LitgcZJPzpBdQk')
+gmaps = googlemaps.Client(key='AIzaSyAO4q3ZkN0AOF1MK2Or2LitgcZJPzpBdQk')
 now = datetime.now()
 app = Flask(__name__)
 
@@ -29,6 +29,7 @@ def login():
             for user in User.objects:
                 if user.password == request.form['password']:
                     return "Authenticated"
+
 @app.route('/interests', methods=['GET', 'POST'])
 def interests():
     if request.method == 'GET':
@@ -37,5 +38,7 @@ def interests():
         arr = []
         for i in range(len(request.form)):
             arr.append(request.form[i])
+
 @app.route('/find', methods=['GET', 'POST'])
 def find():
+    pass
