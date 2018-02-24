@@ -9,10 +9,18 @@ app = Flask(__name__)
 class User(Document):
     username = StringField(required=True, max_length=200)
     password = StringField(required=True, max_length=200)
+    email = StringField(required=True, max_length=200)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        return 'Hello World'
+        if 'email' in request.form:
+            user = User(request.form['username'], request.form['password'], request.form['email'])
+            user.save()
+            return request.form['username']
+        else:
+            for user in User.objects:
+                if user.password == request.form['password']:
+                    return "Authenticated"
