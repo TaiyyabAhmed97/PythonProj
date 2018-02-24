@@ -15,4 +15,4 @@ def login():
     person = User()
     person.save()
     print(person.name)
-    return render_template('login.html', error=error)
+    return render_template('interests.html', error=error)
