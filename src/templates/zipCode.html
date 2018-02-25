@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>User Zipcode</title>
-     <link rel="stylesheet" type='text/css' href= "{{ url_for('static',filename='styles/style.css') }}">
+     <link rel="stylesheet" type='text/css' href= "{{ url_for('static',filename='styles/zipCode.css') }}">
     <!--  <link rel="stylesheet" type='text/css' href= "{{ url_for('static',filename='styles/zipCode.css') }}"> -->
 
 </head>
@@ -14,12 +14,11 @@
       <input type="text" name="zipcode" placeholder="Ex: 00001-5511"/>
 
       <button type="submit">Submit</button>
-      <p class="message">Clicking YES below will allow Google to Automatically attain your zipcode | <a href="#">Google®</a> </p>
-      <h4> 
+    <h4>
       <input type="hidden" name="confirm" value="1">
-      <input type="submit" value="YES">
+      <input type="submit" value="USE MY CURRENT LOCATION">
     </h4>
-
+    <p class="message">Google will use your current location | <a href="#">Google®</a> </p>
 
 
 
