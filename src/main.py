@@ -29,8 +29,7 @@ def login():
             for user in User.objects:
                 if user.password == request.form['password']:
                     return "Authenticated"
-
-@app.route('/interests', methods=['GET', 'POST'])
+@app.route('/interests/<username>', methods=['GET', 'POST'])
 def interests():
     if request.method == 'GET':
         return render_template("interests.html")
@@ -38,7 +37,8 @@ def interests():
         arr = []
         for i in range(len(request.form)):
             arr.append(request.form[i])
-
+        user = User.objects(username=request.args.get('username'))
+        user.interests = arr
 @app.route('/find', methods=['GET', 'POST'])
 def find():
     pass
