@@ -29,7 +29,7 @@ def login():
             for user in User.objects:
                 if user.password == request.form['password']:
                     return "Authenticated"
-@app.route('/interests/<username>', methods=['GET', 'POST'])
+@app.route('/interests', methods=['GET', 'POST'])
 def interests():
     if request.method == 'GET':
         return render_template("interests.html")
