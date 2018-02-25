@@ -55,3 +55,7 @@ def zipCode():
         return User(zipcode, self).post()
     else:
         return render_template('zipCode.html')
+
+@app.route('/map', methods=['GET'])
+def map():
+    return render_template("map.html")
