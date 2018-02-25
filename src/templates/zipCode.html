@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>User Zipcode</title>
+     <link rel="stylesheet" type='text/css' href= "{{ url_for('static',filename='styles/style.css') }}">
+    <!--  <link rel="stylesheet" type='text/css' href= "{{ url_for('static',filename='styles/zipCode.css') }}"> -->
+
+</head>
+<body>
+  <center>
+  <div class="zip-code">
+  <div class="form">
+
+      <form action="{{ url_for('zipCode')}}" method="post">
+      <input type="text" name="zipcode" placeholder="Ex: 00001-5511"/>
+
+      <button type="submit">Submit</button>
+      <p class="message">Clicking YES below will allow Google to Automatically attain your zipcode | <a href="#">Google®</a> </p>
+      <h4> 
+      <input type="hidden" name="confirm" value="1">
+      <input type="submit" value="YES">
+    </h4>
+
+
+
+
+    </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <script>
+    $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+  </script>
+</center>
+</body>
+</html>

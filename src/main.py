@@ -15,6 +15,7 @@ class User(Document):
     password = StringField(required=True, max_length=200)
     email = StringField(required=True, max_length=200)
     interests = ListField(StringField(required=True, max_length=50))
+    zipCode = StringField(required = True, max_length = 200)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -43,3 +44,12 @@ def interests():
 @app.route('/find', methods=['GET', 'POST'])
 def find():
     pass
+
+@app.route('/zipCode', methods=['GET','POST'])
+def zipCode():
+    if request.method == 'POST' and request.form['zipcode']:
+        return redirect(url_for('zipCode'))
+    elif request.args.get('confirm') == '1':
+        return User(zipcode, self).post()
+    else:
+        return render_template('zipCode.html')
